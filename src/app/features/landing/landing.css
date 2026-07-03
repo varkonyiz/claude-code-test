@@ -1,64 +1,113 @@
 :host {
   display: block;
-  max-width: 1100px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
+/* ---- Hero ---- */
 .hero {
-  padding: 2.5rem 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--theme-color-soft-bdr);
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(124, 92, 255, 0.18), transparent 55%),
+    radial-gradient(120% 120% at 100% 0%, rgba(79, 140, 255, 0.16), transparent 55%),
+    var(--theme-color-2);
 }
 
 .hero__badge {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 999px;
-  background: var(--theme-color-2);
+  background: var(--theme-color-1);
+  border: 1px solid var(--theme-color-soft-bdr);
   color: var(--theme-color-primary);
   font-size: 0.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
 .hero__title {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  line-height: 1.1;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.05;
   margin: 0 0 1rem;
   background-image: linear-gradient(90deg, #4f8cff, #a06bff);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Fallback for browsers that ignore background-clip: text. */
   color: #7c9cff;
 }
 
 .hero__lead {
   font-size: 1.15rem;
   line-height: 1.6;
-  max-width: 60ch;
   margin: 0 0 0.75rem;
 }
 
 .hero__note {
   color: var(--theme-color-soft-text);
-  max-width: 60ch;
-  margin: 0;
+  margin: 0 0 1.5rem;
 }
 
-.author {
-  margin: 1.5rem 0 2.5rem;
+.hero__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ---- Author card ---- */
+.hero__author ix-card {
+  height: 100%;
+}
+
+.author__head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.author__avatar {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  background: linear-gradient(135deg, #4f8cff, #a06bff);
+  box-shadow: 0 4px 14px rgba(124, 92, 255, 0.4);
 }
 
 .author__name {
-  margin: 0 0 0.5rem;
-  font-size: 1.4rem;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.author__role {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--theme-color-soft-text);
 }
 
 .author__bio {
   margin: 0 0 1.25rem;
   line-height: 1.6;
   color: var(--theme-color-soft-text);
-  max-width: 70ch;
+}
+
+/* ---- Explore ---- */
+.explore {
+  margin-top: 2.5rem;
 }
 
 .explore__heading {
@@ -68,25 +117,37 @@
 
 .explore__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
 }
 
 .explore__card {
+  --accent: var(--theme-color-primary);
   cursor: pointer;
+  border-top: 3px solid var(--accent);
+  border-radius: 12px;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .explore__card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
 .explore__icon {
-  margin-bottom: 0.75rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-bottom: 0.9rem;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
 .explore__title {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.45rem;
   font-size: 1.2rem;
 }
 
@@ -100,7 +161,14 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  color: var(--theme-color-primary);
+  color: var(--accent);
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 1.75rem;
+  }
 }

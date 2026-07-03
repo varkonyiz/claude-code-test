@@ -1,12 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+/* The real iX palettes live in these theme files, keyed by
+   [data-ix-theme][data-ix-color-schema] — set by themeSwitcher. */
+@import '@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
+@import '@siemens/ix/dist/siemens-ix/theme/classic-light.css';
 @import 'highlight.js/styles/github-dark.css';
 
 html,
 body {
   height: 100%;
   margin: 0;
+  background: var(--theme-color-1);
+  color: var(--theme-color-std-text);
 }
 
 app-root {

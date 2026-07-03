@@ -2,9 +2,9 @@
   <div class="cat">
     <ix-button variant="tertiary" icon="arrow-left" class="cat__back" (click)="goHome()">Home</ix-button>
 
-    <header class="cat__header">
-      <div class="cat__icon" [style.color]="cat.accent">
-        <ix-icon [name]="cat.icon" size="48"></ix-icon>
+    <header class="cat__header" [style.--accent]="cat.accent">
+      <div class="cat__icon">
+        <ix-icon [name]="cat.icon" size="32"></ix-icon>
       </div>
       <div>
         <h1 class="cat__title">{{ cat.title }}</h1>
@@ -14,10 +14,10 @@
 
     <div class="cat__grid">
       @for (topic of cat.topics; track topic.id) {
-        <ix-card class="cat__card" (click)="openTopic(topic.id)">
+        <ix-card class="cat__card" [style.--accent]="cat.accent" (click)="openTopic(topic.id)">
           <ix-card-content>
-            <div class="cat__card-icon" [style.color]="cat.accent">
-              <ix-icon [name]="topic.icon" size="28"></ix-icon>
+            <div class="cat__card-icon">
+              <ix-icon [name]="topic.icon" size="26"></ix-icon>
             </div>
             <h3 class="cat__card-title">{{ topic.title }}</h3>
             <p class="cat__card-tagline">{{ topic.tagline }}</p>

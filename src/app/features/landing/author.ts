@@ -1,14 +1,16 @@
 /**
  * Personal details shown on the landing page.
  *
- * ▶▶ EDIT THESE: replace the placeholder values below with the real ones. ◀◀
- * They are isolated here so updating them never means touching page markup.
+ * Edit these values to update the landing page — they are isolated here so
+ * changes never mean touching page markup.
  */
 export const AUTHOR = {
   name: 'Zoltán Várkonyi',
   /** Short bio / summary shown on the landing page. */
   bio:
-    'PLACEHOLDER BIO — replace me. A few sentences introducing yourself, your ' +
-    'background, and why you built this app to explore software design concepts.',
-  linkedInUrl: 'https://www.linkedin.com/in/__YOUR_HANDLE__',
+    'Software engineer who cares about clean, maintainable code and sharing what ' +
+    'I learn. I built this app to make software design concepts tangible — the ' +
+    'fastest way to truly understand a pattern is to play with it, not just read ' +
+    'about it. Connect with me on LinkedIn to say hi or suggest a topic.',
+  linkedInUrl: 'https://www.linkedin.com/in/varkonyiz',
 } as const;

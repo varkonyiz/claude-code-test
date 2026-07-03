@@ -6,12 +6,12 @@ import {
   IxApplication,
   IxApplicationHeader,
   IxContent,
+  IxIconButton,
   IxMenu,
   IxMenuItem,
 } from '@siemens/ix-angular/standalone';
-import { addIcons } from '@siemens/ix-icons';
-import { iconHome, iconLayers } from '@siemens/ix-icons/icons';
 import { ContentService } from '../../content/content.service';
+import { ThemeService } from '../../theme/theme.service';
 
 /**
  * The persistent application frame: iX header + a navigation menu generated from
@@ -26,6 +26,7 @@ import { ContentService } from '../../content/content.service';
     IxMenu,
     IxMenuItem,
     IxContent,
+    IxIconButton,
   ],
   templateUrl: './shell.html',
   styleUrl: './shell.css',
@@ -33,8 +34,10 @@ import { ContentService } from '../../content/content.service';
 export class Shell {
   private readonly content = inject(ContentService);
   private readonly router = inject(Router);
+  private readonly theme = inject(ThemeService);
 
   readonly categories = this.content.categories;
+  readonly themeMode = this.theme.mode;
 
   /** Current URL as a signal so menu items can reflect the active route. */
   private readonly url = toSignal(
@@ -46,7 +49,11 @@ export class Shell {
   );
 
   constructor() {
-    addIcons({ iconHome, iconLayers });
+    this.theme.init();
+  }
+
+  toggleTheme(): void {
+    this.theme.toggle();
   }
 
   isHome(): boolean {

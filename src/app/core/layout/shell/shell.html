@@ -1,6 +1,12 @@
 <ix-application>
   <ix-application-header name="Patterns Explained">
     <span slot="logo" class="shell-logo">&lt;/&gt;</span>
+    <ix-icon-button
+      variant="subtle-secondary"
+      [icon]="themeMode() === 'dark' ? 'sun' : 'moon'"
+      [attr.aria-label]="themeMode() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+      (click)="toggleTheme()"
+    ></ix-icon-button>
   </ix-application-header>
 
   <ix-menu>

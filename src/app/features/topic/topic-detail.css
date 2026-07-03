@@ -9,10 +9,23 @@
 }
 
 .topic__header {
+  --accent: var(--theme-color-primary);
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
+}
+
+.topic__icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
 .topic__title {

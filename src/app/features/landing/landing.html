@@ -1,40 +1,57 @@
 <section class="hero">
-  <div class="hero__badge">
-    <ix-icon name="bulb" size="16"></ix-icon>
-    <span>Learn by interacting</span>
-  </div>
-  <h1 class="hero__title">Patterns Explained</h1>
-  <p class="hero__lead">
-    An interactive playground for the ideas that shape professional software.
-    Every concept comes with a plain-language explanation, real code, and a
-    <strong>live demo you can click</strong> — so patterns actually click.
-  </p>
-  <p class="hero__note">
-    Starting with the classic <strong>design patterns</strong>, and built to grow:
-    architectural patterns, SOLID principles and prompting techniques are on the way.
-  </p>
-</section>
-
-<section class="author">
-  <ix-card>
-    <ix-card-content>
-      <h2 class="author__name">{{ author.name }}</h2>
-      <p class="author__bio">{{ author.bio }}</p>
-      <ix-button variant="primary" icon="arrow-right" (click)="openLinkedIn()">
-        Connect on LinkedIn
+  <div class="hero__text">
+    <div class="hero__badge">
+      <ix-icon name="bulb" size="16"></ix-icon>
+      <span>Learn by interacting</span>
+    </div>
+    <h1 class="hero__title">Patterns Explained</h1>
+    <p class="hero__lead">
+      An interactive playground for the ideas that shape professional software.
+      Every concept comes with a plain-language explanation, real code, and a
+      <strong>live demo you can click</strong> — so patterns actually click.
+    </p>
+    <p class="hero__note">
+      Starting with the classic <strong>design patterns</strong>, and built to grow:
+      architectural patterns, SOLID principles and prompting techniques are on the way.
+    </p>
+    <div class="hero__actions">
+      <ix-button variant="primary" icon="rocket" (click)="startLearning()">
+        Start learning
       </ix-button>
-    </ix-card-content>
-  </ix-card>
+    </div>
+  </div>
+
+  <aside class="hero__author">
+    <ix-card>
+      <ix-card-content>
+        <div class="author__head">
+          <div class="author__avatar">{{ initials }}</div>
+          <div>
+            <h2 class="author__name">{{ author.name }}</h2>
+            <span class="author__role">Creator</span>
+          </div>
+        </div>
+        <p class="author__bio">{{ author.bio }}</p>
+        <ix-button variant="primary" icon="arrow-right" (click)="openLinkedIn()">
+          Connect on LinkedIn
+        </ix-button>
+      </ix-card-content>
+    </ix-card>
+  </aside>
 </section>
 
 <section class="explore">
   <h2 class="explore__heading">Explore the topics</h2>
   <div class="explore__grid">
     @for (category of categories(); track category.id) {
-      <ix-card class="explore__card" (click)="openCategory(category.id)">
+      <ix-card
+        class="explore__card"
+        [style.--accent]="category.accent"
+        (click)="openCategory(category.id)"
+      >
         <ix-card-content>
-          <div class="explore__icon" [style.color]="category.accent">
-            <ix-icon [name]="category.icon" size="32"></ix-icon>
+          <div class="explore__icon">
+            <ix-icon [name]="category.icon" size="24"></ix-icon>
           </div>
           <h3 class="explore__title">{{ category.title }}</h3>
           <p class="explore__desc">{{ category.description }}</p>

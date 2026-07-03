@@ -4,9 +4,9 @@
       {{ data.category.title }}
     </ix-button>
 
-    <header class="topic__header">
-      <div class="topic__icon" [style.color]="data.category.accent">
-        <ix-icon [name]="data.topic.icon" size="40"></ix-icon>
+    <header class="topic__header" [style.--accent]="data.category.accent">
+      <div class="topic__icon">
+        <ix-icon [name]="data.topic.icon" size="32"></ix-icon>
       </div>
       <div>
         <h1 class="topic__title">{{ data.topic.title }}</h1>

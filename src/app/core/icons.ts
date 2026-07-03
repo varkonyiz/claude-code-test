@@ -16,8 +16,10 @@ import {
   iconInfo,
   iconLayers,
   iconMinus,
+  iconMoon,
   iconPlus,
   iconRocket,
+  iconSun,
 } from '@siemens/ix-icons/icons';
 
 /**
@@ -43,7 +45,9 @@ export function registerAppIcons(): void {
     iconInfo,
     iconLayers,
     iconMinus,
+    iconMoon,
     iconPlus,
     iconRocket,
+    iconSun,
   });
 }

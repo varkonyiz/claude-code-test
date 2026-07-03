@@ -61,8 +61,13 @@ to its category's `topics` array (e.g. `patterns/creational/creational.category.
   via `addIcons`. All app icons are registered once in `src/app/core/icons.ts`
   (`registerAppIcons()`, called from `main.ts`). Add new icon names there; the
   name is the kebab-case of the imported symbol (`iconCircleDot` → `"circle-dot"`).
-- **Theme**: iX theme CSS + the highlight.js theme are imported in `src/styles.css`;
-  the iX theme class (`theme-classic-dark`) is on `<body>` in `src/index.html`.
+- **Theming / light-dark**: iX palettes are keyed by `[data-ix-theme][data-ix-color-schema]`
+  attributes (NOT a body class), so `styles.css` imports the base CSS **plus**
+  `theme/classic-dark.css` and `theme/classic-light.css`. `ThemeService`
+  (`core/theme/theme.service.ts`) wraps iX's `themeSwitcher` (imported from
+  `@siemens/ix`) to apply/persist the mode; the header toggle in `Shell` calls it.
+  Use iX color tokens (`--theme-color-1`, `--theme-color-soft-text`, etc.) in custom
+  CSS so it works in both modes.
 - **Tabs**: `ix-tabs [activeTabKey]` + `(tabChange)="...($event.detail)"`, with
   `ix-tab-item tabKey="...">`.
 

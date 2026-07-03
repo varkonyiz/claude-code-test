@@ -19,6 +19,12 @@ export class Landing {
 
   readonly author = AUTHOR;
   readonly categories = this.content.categories;
+  readonly initials = AUTHOR.name
+    .split(' ')
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
 
   constructor() {
     addIcons({ iconBulb, iconArrowRight, iconChevronRight });
@@ -26,6 +32,13 @@ export class Landing {
 
   openCategory(categoryId: string): void {
     this.router.navigate(['/patterns', categoryId]);
+  }
+
+  startLearning(): void {
+    const first = this.categories()[0];
+    if (first) {
+      this.openCategory(first.id);
+    }
   }
 
   openLinkedIn(): void {
