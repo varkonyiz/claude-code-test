@@ -2,9 +2,9 @@
 
 An interactive learning app for software design concepts. Every topic pairs a
 plain-language explanation with real code **and a live, clickable demo**. It ships
-with the complete **Gang of Four catalog** — Creational, Structural, and Behavioral
-patterns (23 in total) — and is built to grow further (architectural patterns,
-SOLID, prompting techniques…).
+with the complete **Gang of Four catalog** (Creational, Structural, Behavioral)
+plus the **SOLID principles** — 28 topics in total — and is built to grow further
+(architectural patterns, prompting techniques…).
 
 Built with **Angular 22** (standalone components) and the **Siemens iX** design system.
 

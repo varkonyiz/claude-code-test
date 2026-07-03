@@ -20,6 +20,13 @@
     var(--theme-color-2);
 }
 
+/* Grid items default to min-width: auto, which lets their content's intrinsic
+   (max-content) width override the track size and overflow on narrow screens. */
+.hero__text,
+.hero__author {
+  min-width: 0;
+}
+
 .hero__badge {
   display: inline-flex;
   align-items: center;
@@ -170,5 +177,29 @@
   .hero {
     grid-template-columns: 1fr;
     padding: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__actions {
+    flex-wrap: wrap;
+  }
+
+  .hero__actions ix-button,
+  .hero__author ix-button {
+    width: 100%;
+  }
+
+  .explore__grid {
+    grid-template-columns: 1fr;
   }
 }
