@@ -2,8 +2,9 @@
 
 An interactive learning app for software design concepts. Every topic pairs a
 plain-language explanation with real code **and a live, clickable demo**. It ships
-with the five classic **Creational** design patterns and is built to grow
-(architectural patterns, SOLID, prompting techniques…).
+with the complete **Gang of Four catalog** — Creational, Structural, and Behavioral
+patterns (23 in total) — and is built to grow further (architectural patterns,
+SOLID, prompting techniques…).
 
 Built with **Angular 22** (standalone components) and the **Siemens iX** design system.
 
@@ -32,7 +33,9 @@ typed registry, so adding material never means touching the shell or router.
 - Add a **category** → one `Category` object registered in
   `src/app/core/content/content.registry.ts`.
 
-See [CLAUDE.md](CLAUDE.md) for the full architecture and iX integration notes.
+See [CLAUDE.md](CLAUDE.md) for the full architecture and iX integration notes, or
+use the `add-pattern-content` Claude Code skill (`.claude/skills/`) to add new
+topics/categories reliably.
 
 ## Personal info
 

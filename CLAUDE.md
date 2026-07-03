@@ -6,8 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Patterns Explained** — an interactive learning app that teaches software design
 concepts. Each topic has an explanation, real code, and a live interactive demo.
-It currently covers the five Creational design patterns and is designed to be
-extended with more categories (architectural patterns, SOLID, prompting techniques).
+It currently covers the full Gang of Four catalog — all 5 Creational, 7 Structural,
+and 11 Behavioral patterns (23 total) — and is designed to be extended with more
+categories (architectural patterns, SOLID, prompting techniques). See the
+`add-pattern-content` skill under `.claude/skills/` for the step-by-step workflow
+and Siemens iX gotchas when adding new content.
 
 Built with Angular 22 (standalone components) and the Siemens iX design system.
 
