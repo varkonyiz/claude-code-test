@@ -1,0 +1,38 @@
+@if (category(); as cat) {
+  <div class="cat">
+    <ix-button variant="tertiary" icon="arrow-left" class="cat__back" (click)="goHome()">Home</ix-button>
+
+    <header class="cat__header">
+      <div class="cat__icon" [style.color]="cat.accent">
+        <ix-icon [name]="cat.icon" size="48"></ix-icon>
+      </div>
+      <div>
+        <h1 class="cat__title">{{ cat.title }}</h1>
+        <p class="cat__desc">{{ cat.description }}</p>
+      </div>
+    </header>
+
+    <div class="cat__grid">
+      @for (topic of cat.topics; track topic.id) {
+        <ix-card class="cat__card" (click)="openTopic(topic.id)">
+          <ix-card-content>
+            <div class="cat__card-icon" [style.color]="cat.accent">
+              <ix-icon [name]="topic.icon" size="28"></ix-icon>
+            </div>
+            <h3 class="cat__card-title">{{ topic.title }}</h3>
+            <p class="cat__card-tagline">{{ topic.tagline }}</p>
+            <div class="cat__card-cta">
+              <span>Open demo</span>
+              <ix-icon name="chevron-right" size="16"></ix-icon>
+            </div>
+          </ix-card-content>
+        </ix-card>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="cat cat--missing">
+    <h1>Category not found</h1>
+    <ix-button variant="primary" (click)="goHome()">Back to home</ix-button>
+  </div>
+}

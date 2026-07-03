@@ -4,22 +4,77 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-This is a sandbox repo (`claude-code-test`) for testing Claude Code's capabilities. It currently contains a freshly scaffolded Angular 22 app with no custom functionality yet — expect the app shell (routing, single root component) to be the starting point for whatever gets built next.
+**Patterns Explained** — an interactive learning app that teaches software design
+concepts. Each topic has an explanation, real code, and a live interactive demo.
+It currently covers the five Creational design patterns and is designed to be
+extended with more categories (architectural patterns, SOLID, prompting techniques).
+
+Built with Angular 22 (standalone components) and the Siemens iX design system.
 
 ## Commands
 
-- `npm start` / `ng serve` — run the dev server at `http://localhost:4200/` with live reload.
+- `npm start` / `ng serve` — dev server at `http://localhost:4200/` with live reload.
 - `ng build` — production build, output to `dist/first-claude-app`.
-- `npm run watch` — development-configuration build in watch mode.
-- `ng test` — run unit tests via Vitest. To run a single test file: `ng test -- <path-or-pattern>` (Vitest CLI args pass through after `--`).
-- `ng generate component <name>` (or `directive`/`pipe`/etc.) — scaffold new pieces via Angular schematics.
-- `ng e2e` — no e2e framework is configured yet; this will fail until one is added.
+- `ng test --watch=false` — run unit tests once via Vitest. Single file: append `-- <pattern>`.
+- `ng generate component <name>` — scaffold via Angular schematics.
+- `ng e2e` — no e2e framework configured; will fail until one is added.
 
-## Architecture
+## The content architecture (most important thing to understand)
 
-- **Standalone components, no NgModules.** The app bootstraps directly via `bootstrapApplication(App, appConfig)` in [src/main.ts](src/main.ts) — there is no `AppModule`. New components should follow the same standalone pattern (`imports: [...]` directly on the `@Component` decorator) rather than being declared in a module.
-- **App-wide providers** (router, global error listeners) are registered in [src/app/app.config.ts](src/app/app.config.ts) via the `ApplicationConfig`/`provideX` pattern. Add new app-wide providers (HTTP client, etc.) here.
-- **Routes** live in [src/app/app.routes.ts](src/app/app.routes.ts) and are wired in via `provideRouter(routes)`.
-- **Root component** is `App` in [src/app/app.ts](src/app/app.ts) (selector `app-root`), using Angular signals (`signal(...)`) for state rather than plain class fields — follow this convention for component state in new code.
-- **Testing** uses Vitest (not Karma/Jasmine, which is the older Angular default) — spec files sit next to the source they test, e.g. [src/app/app.spec.ts](src/app/app.spec.ts).
+Everything the app teaches is **data-driven** from a typed registry. Navigation,
+routes, and pages are all derived from it, so **adding content never means editing
+the shell, router, or page components**:
+
+- **Model** — `src/app/core/content/content.model.ts` defines `Category` → `Topic`
+  → `Section`/`CodeSample`. A `Topic.demo` is a `Type<unknown>` (a standalone
+  component) rendered via `NgComponentOutlet` on the topic page.
+- **Registry** — `src/app/core/content/content.registry.ts` exports `CATEGORIES`.
+  This is the single place that lists categories.
+- **Service** — `ContentService` (`content.service.ts`) exposes `categories()`,
+  `getCategory(id)`, `getTopic(categoryId, topicId)` as the lookup surface used by
+  the nav menu and all pages.
+
+**To add a topic:** create `src/app/patterns/<category>/<topic>/<topic>.content.ts`
+(a `Topic` object) + a `<topic>-demo.ts` standalone component, then add the topic
+to its category's `topics` array (e.g. `patterns/creational/creational.category.ts`).
+
+**To add a category:** create `patterns/<area>/<area>.category.ts` exporting a
+`Category`, then append it to `CATEGORIES` in the registry. Nothing else changes.
+
+### Routing & pages
+- `app.routes.ts`: `''` (landing), `patterns/:categoryId` (overview),
+  `patterns/:categoryId/:topicId` (detail), `**` → `''`. Pages resolve content from
+  route params via `ContentService`, so there are **no per-topic routes**.
+- Shell (`core/layout/shell/`) renders the iX application frame; its nav menu is
+  generated from `ContentService.categories()`.
+- Feature pages: `features/{landing,category,topic}/`. Topic detail uses `ix-tabs`
+  for Live demo / Explanation / Code, and projects the demo with `NgComponentOutlet`.
+
+## Siemens iX conventions (v5)
+
+- **Import components from `@siemens/ix-angular/standalone`** (e.g. `IxButton`,
+  `IxCard`) and add them to a component's `imports: []`. Do NOT expect NgModules.
+- **Button variants**: `ix-button`/`ix-icon-button` use the `variant` prop only —
+  `'primary' | 'secondary' | 'tertiary'` (plus `subtle-*` / `danger-*`). There is
+  **no `ghost` or `outline` attribute** (they were removed; binding them fails the build).
+- **Icons must be registered.** `<ix-icon name="x">` only renders icons registered
+  via `addIcons`. All app icons are registered once in `src/app/core/icons.ts`
+  (`registerAppIcons()`, called from `main.ts`). Add new icon names there; the
+  name is the kebab-case of the imported symbol (`iconCircleDot` → `"circle-dot"`).
+- **Theme**: iX theme CSS + the highlight.js theme are imported in `src/styles.css`;
+  the iX theme class (`theme-classic-dark`) is on `<body>` in `src/index.html`.
+- **Tabs**: `ix-tabs [activeTabKey]` + `(tabChange)="...($event.detail)"`, with
+  `ix-tab-item tabKey="...">`.
+
+## Other conventions
+
+- **Standalone components, signals for state.** Bootstrap is
+  `bootstrapApplication(App, appConfig)` in `main.ts`; no `AppModule`. Use
+  `signal()`/`computed()` for component state (see the pattern demos).
+- **Testing** uses Vitest; specs sit next to source (e.g.
+  `core/content/content.service.spec.ts`). Avoid rendering iX web components in
+  unit tests (jsdom) — prefer testing plain services/logic.
+- **Budgets**: the iX theme is large, so `angular.json` production budgets are
+  raised (initial 2–4 MB, component style 12–24 kB). Keep that in mind if adding
+  heavy assets.
 - Formatting is enforced via Prettier (`.prettierrc`).

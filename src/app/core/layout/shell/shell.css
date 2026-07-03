@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.shell-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--theme-color-primary);
+}
+
+.shell-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem 2rem 3rem;
+}
+
+ix-menu-item {
+  cursor: pointer;
+}

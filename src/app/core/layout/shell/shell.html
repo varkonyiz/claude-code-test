@@ -1,0 +1,34 @@
+<ix-application>
+  <ix-application-header name="Patterns Explained">
+    <span slot="logo" class="shell-logo">&lt;/&gt;</span>
+  </ix-application-header>
+
+  <ix-menu>
+    <ix-menu-item
+      home
+      icon="home"
+      label="Home"
+      [active]="isHome()"
+      (click)="go(['/'])"
+    >
+      Home
+    </ix-menu-item>
+
+    @for (category of categories(); track category.id) {
+      <ix-menu-item
+        [icon]="category.icon"
+        [label]="category.title"
+        [active]="isCategoryActive(category.id)"
+        (click)="go(['/patterns', category.id])"
+      >
+        {{ category.title }}
+      </ix-menu-item>
+    }
+  </ix-menu>
+
+  <ix-content>
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </ix-content>
+</ix-application>

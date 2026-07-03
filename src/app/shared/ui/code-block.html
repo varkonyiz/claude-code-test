@@ -1,0 +1,13 @@
+<figure class="code-block">
+  <figcaption class="code-block__bar">
+    <span class="code-block__label">{{ label() || language() }}</span>
+    <ix-icon-button
+      variant="subtle-secondary"
+      size="16"
+      [icon]="copied() ? 'check' : 'copy'"
+      [attr.aria-label]="copied() ? 'Copied' : 'Copy code'"
+      (click)="copy()"
+    ></ix-icon-button>
+  </figcaption>
+  <pre class="code-block__pre"><code class="hljs" [innerHTML]="highlighted()"></code></pre>
+</figure>

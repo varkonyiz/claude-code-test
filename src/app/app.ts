@@ -1,12 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Shell } from './core/layout/shell/shell';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  imports: [Shell],
+  template: '<app-shell />',
 })
-export class App {
-  protected readonly title = signal('first-claude-app');
-}
+export class App {}

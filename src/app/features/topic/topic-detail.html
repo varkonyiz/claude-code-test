@@ -1,0 +1,59 @@
+@if (resolved(); as data) {
+  <div class="topic">
+    <ix-button variant="tertiary" icon="arrow-left" class="topic__back" (click)="backToCategory()">
+      {{ data.category.title }}
+    </ix-button>
+
+    <header class="topic__header">
+      <div class="topic__icon" [style.color]="data.category.accent">
+        <ix-icon [name]="data.topic.icon" size="40"></ix-icon>
+      </div>
+      <div>
+        <h1 class="topic__title">{{ data.topic.title }}</h1>
+        <p class="topic__tagline">{{ data.topic.tagline }}</p>
+      </div>
+    </header>
+
+    <ix-tabs [activeTabKey]="activeTab()" (tabChange)="onTabChange($event.detail)">
+      <ix-tab-item tabKey="demo" icon="rocket">Live demo</ix-tab-item>
+      <ix-tab-item tabKey="explain" icon="info">Explanation</ix-tab-item>
+      <ix-tab-item tabKey="code" icon="code">Code</ix-tab-item>
+    </ix-tabs>
+
+    <section class="topic__panel" role="tabpanel">
+      @switch (activeTab()) {
+        @case ('demo') {
+          <div class="topic__demo">
+            <ng-container [ngComponentOutlet]="data.topic.demo" />
+          </div>
+        }
+        @case ('explain') {
+          <div class="topic__sections">
+            @for (section of data.topic.sections; track section.heading) {
+              <article class="topic__section">
+                <h2>{{ section.heading }}</h2>
+                <p>{{ section.body }}</p>
+              </article>
+            }
+          </div>
+        }
+        @case ('code') {
+          <div class="topic__code stack">
+            @for (sample of data.topic.code; track sample.label) {
+              <app-code-block
+                [code]="sample.source"
+                [language]="sample.language"
+                [label]="sample.label"
+              />
+            }
+          </div>
+        }
+      }
+    </section>
+  </div>
+} @else {
+  <div class="topic topic--missing">
+    <h1>Topic not found</h1>
+    <ix-button variant="primary" (click)="goHome()">Back to home</ix-button>
+  </div>
+}
