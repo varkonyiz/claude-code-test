@@ -1,0 +1,22 @@
+[
+  { "query": "add the Observer pattern to the patterns app with a little live demo where subscribers light up when the subject changes", "should_trigger": true },
+  { "query": "can you create a SOLID principles section? start with single responsibility and give it an interactive example", "should_trigger": true },
+  { "query": "I want a new page for the Adapter pattern - put it under a behavioral category or wherever it fits", "should_trigger": true },
+  { "query": "add a Strategy demo where you can swap the sorting algorithm from a dropdown and watch the bars re-sort", "should_trigger": true },
+  { "query": "make a new category for architectural patterns - MVC, layered, hexagonal, that kind of thing", "should_trigger": true },
+  { "query": "the Builder explanation feels thin, rewrite the 'when to use it' section and add a second code sample", "should_trigger": true },
+  { "query": "add prompting techniques as a new topic area in first-claude-app - few-shot, chain of thought, etc", "should_trigger": true },
+  { "query": "create an interactive demo for the Decorator pattern following the same structure as the existing ones", "should_trigger": true },
+  { "query": "add Command pattern with an undo/redo demo the user can click through", "should_trigger": true },
+  { "query": "I'd like to add Facade to the catalog, match how Singleton and Factory are set up", "should_trigger": true },
+  { "query": "explain the difference between Factory Method and Abstract Factory to me", "should_trigger": false },
+  { "query": "the theme toggle in the header doesn't persist after I refresh - can you fix it", "should_trigger": false },
+  { "query": "add a unit test for ContentService that checks getTopic returns undefined for bad ids", "should_trigger": false },
+  { "query": "scaffold a new Angular component for a user settings page with the CLI", "should_trigger": false },
+  { "query": "what design pattern should I use for a plugin system in my own project?", "should_trigger": false },
+  { "query": "refactor the shell to use a collapsible sidebar instead of the iX menu", "should_trigger": false },
+  { "query": "drop a Siemens iX data grid somewhere in the app to show a table of data", "should_trigger": false },
+  { "query": "write a blog post explaining the Singleton pattern with pros and cons", "should_trigger": false },
+  { "query": "update the README with the build and deploy instructions", "should_trigger": false },
+  { "query": "deploy the patterns app to GitHub Pages when I push to master", "should_trigger": false }
+]

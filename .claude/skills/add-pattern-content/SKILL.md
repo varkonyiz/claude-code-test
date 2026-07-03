@@ -1,15 +1,21 @@
 ---
 name: add-pattern-content
 description: >-
-  Add new educational content (a new topic/pattern, or a whole new category) to
-  the "Patterns Explained" Angular app in this repo. Use this whenever someone
-  wants to add or edit teaching material here — a new design pattern (e.g. Adapter,
-  Observer, Decorator), a new category (e.g. SOLID principles, architectural
-  patterns, prompting techniques), a new interactive demo, or a topic's
-  explanation/code. Trigger even when the user doesn't say "skill" — phrases like
-  "add the Strategy pattern", "make a SOLID section", "add a page for X", or "create
-  a demo for Y" all mean this. It encodes the content-registry architecture and the
-  Siemens iX gotchas that otherwise cause build failures.
+  Add or edit educational content in the "Patterns Explained" Angular app in THIS
+  repository — a new topic/pattern, a whole new category, a new interactive demo, or
+  a topic's explanation/code. Use this whenever someone wants to grow or change the
+  app's teaching catalog: e.g. "add the Observer pattern", "create a SOLID principles
+  section", "add a page for the Adapter pattern", "make an interactive demo for
+  Strategy", "add prompting techniques as a category", or "rewrite the Builder
+  explanation and add a code sample". Trigger even if the user never says "skill" or
+  "content" — any request to add/extend a pattern, category, or demo here counts. It
+  encodes this app's content-registry architecture (topics and categories driven from
+  a typed registry) and the Siemens iX v5 gotchas that otherwise cause build failures,
+  so following it is far more reliable than editing by hand. Do NOT use it for
+  abstract design-pattern questions ("explain Factory vs Abstract Factory"), writing
+  about patterns outside this app, fixing app bugs, general Angular component
+  scaffolding or UI features, tests, docs, or deployment — those are not catalog
+  changes.
 ---
 
 # Add Pattern Content

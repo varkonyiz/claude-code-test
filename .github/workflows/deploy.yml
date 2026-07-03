@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+# Build the Angular app and publish it to GitHub Pages on every push to master.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# Permissions required by the GitHub Pages deployment actions.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress production deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # base-href must match the project-pages subpath (/<repo>/) so assets and
+      # router links resolve correctly at varkonyiz.github.io/claude-code-test/.
+      - name: Build
+        run: npx ng build --base-href /claude-code-test/
+
+      # GitHub Pages has no SPA fallback: serving 404.html for unknown paths lets
+      # the Angular router handle deep links (e.g. /patterns/creational/singleton)
+      # on refresh or direct navigation.
+      - name: Add SPA fallback
+        run: cp dist/first-claude-app/browser/index.html dist/first-claude-app/browser/404.html
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/first-claude-app/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
