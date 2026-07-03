@@ -1,0 +1,45 @@
+// Template: a topic's content data.
+// Place at: src/app/patterns/<category>/<topic>/<topic>.content.ts
+// Replace <topic>/<Topic>/<Category> and fill the prose + code for the real pattern.
+// Then add `<topic>Topic` to the category's `topics` array.
+
+import { Topic } from '../../../core/content/content.model';
+import { TopicNameDemo } from './topic-name-demo';
+
+export const topicNameTopic: Topic = {
+  id: 'topic-name', // kebab-case, matches the folder and the URL segment
+  title: 'Topic Name',
+  tagline: 'One-line hook that makes the idea click.',
+  icon: 'circle-dot', // an iX icon name registered in src/app/core/icons.ts
+  demo: TopicNameDemo,
+  sections: [
+    {
+      heading: 'Intent',
+      body: 'One or two sentences: what this pattern is for.',
+    },
+    {
+      heading: 'Problem it solves',
+      body: 'The concrete pain that leads someone to reach for it.',
+    },
+    {
+      heading: 'How it works',
+      body: 'The mechanism, referencing what the live demo shows so the reader connects the two.',
+    },
+    {
+      heading: 'When to use it',
+      body: 'Good fits and honest caveats — when NOT to use it is valuable too.',
+    },
+    {
+      heading: 'Real-world analogy',
+      body: 'A vivid, non-software analogy that sticks.',
+    },
+  ],
+  code: [
+    {
+      label: 'topic-name.ts',
+      language: 'typescript',
+      source: `// A small, self-contained example the reader can grasp in isolation.
+// Prefer ~15-25 lines with a console.log that shows the payoff.`,
+    },
+  ],
+};

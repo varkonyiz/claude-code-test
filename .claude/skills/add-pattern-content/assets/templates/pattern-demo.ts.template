@@ -1,0 +1,84 @@
+// Template: an interactive demo component.
+// Place at: src/app/patterns/<category>/<topic>/<topic>-demo.ts
+// The goal: let the user DO something (click/toggle/select) and SEE the pattern's
+// behaviour, ideally with a small animation. Keep it self-contained (inline template
+// + styles). Style with iX theme tokens so it works in light and dark.
+//
+// Replace TopicName / app-topic-name-demo. Import only the iX pieces you use, from
+// '@siemens/ix-angular/standalone'. See references/ix-cheatsheet.md for gotchas.
+
+import { Component, computed, signal } from '@angular/core';
+import { IxButton } from '@siemens/ix-angular/standalone';
+
+@Component({
+  selector: 'app-topic-name-demo',
+  imports: [IxButton],
+  template: `
+    <div class="demo">
+      <p class="demo__hint">
+        Tell the user what to try, in one sentence.
+      </p>
+
+      <div class="demo__controls">
+        <ix-button variant="primary" (click)="doThing()">Do the thing</ix-button>
+        <ix-button variant="tertiary" (click)="reset()">Reset</ix-button>
+      </div>
+
+      <!-- Visualise state here; make changes animate. -->
+      <div class="demo__stage">
+        <span class="demo__value" [class.demo__value--active]="count() > 0">
+          {{ count() }}
+        </span>
+      </div>
+    </div>
+  `,
+  styles: [
+    `
+      .demo {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .demo__hint {
+        margin: 0;
+        color: var(--theme-color-soft-text);
+      }
+      .demo__controls {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .demo__stage {
+        min-height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: var(--theme-color-2);
+        border: 1px solid var(--theme-color-soft-bdr);
+      }
+      .demo__value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--theme-color-soft-text);
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      .demo__value--active {
+        color: var(--theme-color-primary);
+        transform: scale(1.15);
+      }
+    `,
+  ],
+})
+export class TopicNameDemo {
+  readonly count = signal(0);
+  readonly doubled = computed(() => this.count() * 2);
+
+  doThing(): void {
+    this.count.update((n) => n + 1);
+  }
+
+  reset(): void {
+    this.count.set(0);
+  }
+}

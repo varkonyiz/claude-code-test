@@ -1,0 +1,23 @@
+// Template: a category definition.
+// Place at: src/app/patterns/<category>/<category>.category.ts
+// After creating it, import and append `<category>Category` to CATEGORIES in
+// src/app/core/content/content.registry.ts — that's the only registry edit needed.
+
+import { Category } from '../../core/content/content.model';
+// Import each topic that belongs to this category:
+// import { firstTopic } from './first-topic/first-topic.content';
+// import { secondTopic } from './second-topic/second-topic.content';
+
+export const categoryNameCategory: Category = {
+  id: 'category-name', // kebab-case, appears in the URL (/patterns/category-name)
+  title: 'Category Name',
+  description:
+    'One or two sentences describing what this group of topics is about and why ' +
+    'it matters. Shown on the category overview header.',
+  icon: 'layers', // an iX icon name registered in src/app/core/icons.ts
+  accent: '#7c5cff', // a CSS colour; drives card/badge accents — pick a distinct one
+  topics: [
+    // firstTopic,
+    // secondTopic,
+  ],
+};
